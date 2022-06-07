@@ -19,7 +19,8 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@iogru/common": ["libs/common/src"],
-      "@iogru/logger": ["libs/logger/src"]
+      "@iogru/logger": ["libs/logger/src"],
+      "@iogru/protos": ["libs/protos/src"]
     }
   }
 }

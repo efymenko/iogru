@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package app.users;
+
+message UserResponse {
+  string id = 1;
+
+  string username = 2;
+  string password = 3;
+
+  string aboutMe = 4;
+  string phoneNumber = 5;
+
+  bool isDeleted = 6;
+
+  int64 createdAt = 7;
+  int64 updatedAt = 8;
+}
+
+service UsersService {
+  rpc Create (CreateUserRequest) returns (UserResponse);
+  rpc Update (UpdateUserResponse) returns (UserResponse);
+  rpc FindById (FindUserRequest) returns (UserResponse);
+  rpc Delete (DeleteUserRequest) returns (UserResponse);
+  rpc Destroy (DestroyUserRequest) returns (UserResponse);
+  rpc Login (LoginUserRequest) returns (UserResponse);
+}
+
+message CreateUserRequest {
+  string username = 1;
+  string password = 2;
+  optional string aboutMe = 3;
+  optional string phoneNumber = 4;
+}
+
+message UpdateUserResponse {
+  string id = 1;
+  optional string username = 2;
+  optional string password = 3;
+  optional string aboutMe = 4;
+  optional string phoneNumber = 5;
+}
+
+message FindUserRequest {
+  string id = 1;
+}
+
+message DeleteUserRequest {
+  string id = 1;
+}
+
+message DestroyUserRequest {
+  string id = 1;
+}
+
+message LoginUserRequest {
+  string username = 1;
+  string password = 2;
+}

@@ -18,15 +18,20 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./apps/iogru/test/jest-e2e.json"
+    "test:e2e": "jest --config ./apps/iogru/test/jest-e2e.json",
+    "proto:gen": "npx protoc --ts_proto_out=./libs/protos/src/interfaces -I ./node_modules/protos ./node_modules/protos/*.proto --ts_proto_opt=nestJs=true --ts_proto_opt=addGrpcMetadata=true"
   },
   "overrides": {
     "multer": "^1.4.4-lts.1"
   },
   "dependencies": {
+    "@grpc/grpc-js": "^1.6.7",
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
+    "@nestjs/microservices": "^8.4.6",
     "@nestjs/platform-express": "^8.0.0",
+    "app-root-path": "^3.0.0",
+    "protos": "file:protos",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
@@ -38,6 +43,8 @@
     "@nestjs/cli": "^8.0.0",
     "@nestjs/schematics": "^8.0.0",
     "@nestjs/testing": "^8.0.0",
+    "@protobuf-ts/protoc": "^2.6.0",
+    "@types/app-root-path": "^1.2.4",
     "@types/express": "^4.17.13",
     "@types/jest": "27.5.0",
     "@types/node": "^16.0.0",
@@ -55,6 +62,7 @@
     "ts-jest": "28.0.1",
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
+    "ts-proto": "^1.115.4",
     "tsconfig-paths": "4.0.0",
     "typescript": "^4.3.5"
   },
@@ -80,7 +88,8 @@
     ],
     "moduleNameMapper": {
       "^@iogru/common(|/.*)$": "<rootDir>/libs/common/src/$1",
-      "^@iogru/logger(|/.*)$": "<rootDir>/libs/logger/src/$1"
+      "^@iogru/logger(|/.*)$": "<rootDir>/libs/logger/src/$1",
+      "^@iogru/protos(|/.*)$": "<rootDir>/libs/protos/src/$1"
     }
   }
 }
