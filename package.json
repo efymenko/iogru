@@ -27,10 +27,13 @@
   "dependencies": {
     "@grpc/grpc-js": "^1.6.7",
     "@nestjs/common": "^8.0.0",
+    "@nestjs/config": "^2.1.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/microservices": "^8.4.6",
     "@nestjs/platform-express": "^8.0.0",
     "app-root-path": "^3.0.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
     "protos": "file:protos",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
