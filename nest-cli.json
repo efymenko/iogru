@@ -56,6 +56,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/protos/tsconfig.lib.json"
       }
+    },
+    "bcrypt": {
+      "type": "library",
+      "root": "libs/bcrypt",
+      "entryFile": "index",
+      "sourceRoot": "libs/bcrypt/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/bcrypt/tsconfig.lib.json"
+      }
     }
   },
   "compilerOptions": {

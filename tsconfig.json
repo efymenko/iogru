@@ -20,7 +20,9 @@
     "paths": {
       "@iogru/common": ["libs/common/src"],
       "@iogru/logger": ["libs/logger/src"],
-      "@iogru/protos": ["libs/protos/src", "libs/protos/interfaces/*"]
+      "@iogru/protos": ["libs/protos/src"],
+      "@iogru/protos/*": ["libs/protos/src/interfaces/*"],
+      "@iogru/bcrypt": ["libs/bcrypt/src"]
     }
   }
 }
