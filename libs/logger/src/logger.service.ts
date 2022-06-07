@@ -12,7 +12,8 @@ export class LoggerService implements ILoggerService {
   private defaultMetadata: Metadata;
 
   private _log(level: LogLevel, message: Message, metadata?: Metadata) {
-    this.driver.log(level, message, { ...this.defaultMetadata, ...metadata });
+    const defaultMeta = this.defaultMetadata;
+    this.driver.log(level, message, { defaultMeta, metadata });
   }
 
   constructor(@Inject(Driver) private readonly driver: IDriver) {}

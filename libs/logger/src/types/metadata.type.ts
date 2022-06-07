@@ -1,1 +1,1 @@
-export type Metadata = Record<string, unknown> | object;
+export type Metadata = Record<string, unknown> | object | string;
