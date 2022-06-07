@@ -21,15 +21,6 @@
         "tsConfigPath": "apps/users/tsconfig.app.json"
       }
     },
-    "tokens": {
-      "type": "application",
-      "root": "apps/tokens",
-      "entryFile": "main",
-      "sourceRoot": "apps/tokens/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/tokens/tsconfig.app.json"
-      }
-    },
     "gateway": {
       "type": "application",
       "root": "apps/gateway",
