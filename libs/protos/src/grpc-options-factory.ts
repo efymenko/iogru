@@ -1,7 +1,10 @@
 import { GrpcOptions, Transport } from '@nestjs/microservices';
 import { toString } from 'app-root-path';
 import { join } from 'path';
-import { protobufPackage as usersPackage } from './interfaces/users.service.v1';
+import {
+  protobufPackage as usersPackage,
+  USERS_SERVICE_NAME,
+} from './interfaces/users.service.v1';
 
 type Options = {
   name: ProtoService;
@@ -37,7 +40,7 @@ export const createGrpcOptions = (
 type ProtoService = keyof typeof ProtoServices;
 
 const ProtoServices = {
-  UsersService: {
+  [USERS_SERVICE_NAME]: {
     fileName: 'users.service.v1.proto',
     packageName: usersPackage,
   },
