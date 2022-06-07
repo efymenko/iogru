@@ -19,7 +19,7 @@ message UserResponse {
 
 service UsersService {
   rpc Create (CreateUserRequest) returns (UserResponse);
-  rpc Update (UpdateUserResponse) returns (UserResponse);
+  rpc Update (UpdateUserRequest) returns (UserResponse);
   rpc FindById (FindUserRequest) returns (UserResponse);
   rpc Delete (DeleteUserRequest) returns (UserResponse);
   rpc Destroy (DestroyUserRequest) returns (UserResponse);
@@ -33,7 +33,7 @@ message CreateUserRequest {
   optional string phoneNumber = 4;
 }
 
-message UpdateUserResponse {
+message UpdateUserRequest {
   string id = 1;
   optional string username = 2;
   optional string password = 3;

@@ -25,7 +25,7 @@ export interface CreateUserRequest {
   phoneNumber?: string | undefined;
 }
 
-export interface UpdateUserResponse {
+export interface UpdateUserRequest {
   id: string;
   username?: string | undefined;
   password?: string | undefined;
@@ -59,7 +59,7 @@ export interface UsersServiceClient {
   ): Observable<UserResponse>;
 
   update(
-    request: UpdateUserResponse,
+    request: UpdateUserRequest,
     metadata?: Metadata,
   ): Observable<UserResponse>;
 
@@ -91,7 +91,7 @@ export interface UsersServiceController {
   ): Promise<UserResponse> | Observable<UserResponse> | UserResponse;
 
   update(
-    request: UpdateUserResponse,
+    request: UpdateUserRequest,
     metadata?: Metadata,
   ): Promise<UserResponse> | Observable<UserResponse> | UserResponse;
 
