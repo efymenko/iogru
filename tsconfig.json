@@ -18,9 +18,8 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@iogru/common": [
-        "libs/common/src"
-      ]
+      "@iogru/common": ["libs/common/src"],
+      "@iogru/logger": ["libs/logger/src"]
     }
   }
 }

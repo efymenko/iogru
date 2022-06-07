@@ -29,7 +29,8 @@
     "@nestjs/platform-express": "^8.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "winston": "^3.7.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
@@ -78,7 +79,8 @@
       "<rootDir>/apps/"
     ],
     "moduleNameMapper": {
-      "^@iogru/common(|/.*)$": "<rootDir>/libs/common/src/$1"
+      "^@iogru/common(|/.*)$": "<rootDir>/libs/common/src/$1",
+      "^@iogru/logger(|/.*)$": "<rootDir>/libs/logger/src/$1"
     }
   }
 }
