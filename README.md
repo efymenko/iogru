@@ -9,7 +9,7 @@
 ```bash
 $ git clone https://github.com/efymenko/iogru.git
 $ cd iogru
-$ docker-compose -f ./composers/presentation.docker-compose.yaml
+$ docker-compose -f ./composers/presentation.docker-compose.yaml up
 ```
 
 ## API
