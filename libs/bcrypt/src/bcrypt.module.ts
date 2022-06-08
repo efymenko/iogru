@@ -1,7 +1,6 @@
 import { DynamicModule, Module } from '@nestjs/common';
+import { BCRYPT_OPTIONS } from './bcrypt.options';
 import { BcryptService } from './bcrypt.service';
-
-export const BCRYPT_OPTIONS = Symbol('Bcrypt options');
 
 export type BcryptOptions = { saltRounds: number };
 

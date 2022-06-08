@@ -1,17 +1,13 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
-import { BcryptOptions, BCRYPT_OPTIONS } from './bcrypt.module';
+import { Inject, Injectable } from '@nestjs/common';
+import { BcryptOptions } from './bcrypt.module';
 import * as bcrypt from 'bcrypt';
-import { ModuleRef } from '@nestjs/core';
+import { BCRYPT_OPTIONS } from './bcrypt.options';
 
 @Injectable()
-export class BcryptService implements OnModuleInit {
-  private options: BcryptOptions;
-
-  constructor(private readonly ref: ModuleRef) {}
-
-  onModuleInit() {
-    this.options = this.ref.get(BCRYPT_OPTIONS);
-  }
+export class BcryptService {
+  constructor(
+    @Inject(BCRYPT_OPTIONS) private readonly options: BcryptOptions,
+  ) {}
 
   hashSync = (data: string): string => {
     return bcrypt.hashSync(data, this.options.saltRounds);
