@@ -13,14 +13,15 @@ message UserResponse {
 
   bool isDeleted = 6;
 
-  int64 createdAt = 7;
-  int64 updatedAt = 8;
+  string createdAt = 7;
+  string updatedAt = 8;
 }
 
 service UsersService {
   rpc Create (CreateUserRequest) returns (UserResponse);
   rpc Update (UpdateUserRequest) returns (UserResponse);
   rpc FindById (FindUserRequest) returns (UserResponse);
+  rpc Find (FindUsersRequest) returns (stream UserResponse);
   rpc Delete (DeleteUserRequest) returns (UserResponse);
   rpc Destroy (DestroyUserRequest) returns (UserResponse);
   rpc Login (LoginUserRequest) returns (UserResponse);
@@ -43,6 +44,11 @@ message UpdateUserRequest {
 
 message FindUserRequest {
   string id = 1;
+}
+
+message FindUsersRequest {
+  int32 limit = 1;
+  optional string bookmark = 2;
 }
 
 message DeleteUserRequest {

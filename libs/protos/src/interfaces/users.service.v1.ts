@@ -14,8 +14,8 @@ export interface UserResponse {
   aboutMe: string;
   phoneNumber: string;
   isDeleted: boolean;
-  createdAt: number;
-  updatedAt: number;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface CreateUserRequest {
@@ -35,6 +35,11 @@ export interface UpdateUserRequest {
 
 export interface FindUserRequest {
   id: string;
+}
+
+export interface FindUsersRequest {
+  limit: number;
+  bookmark?: string | undefined;
 }
 
 export interface DeleteUserRequest {
@@ -65,6 +70,11 @@ export interface UsersServiceClient {
 
   findById(
     request: FindUserRequest,
+    metadata?: Metadata,
+  ): Observable<UserResponse>;
+
+  find(
+    request: FindUsersRequest,
     metadata?: Metadata,
   ): Observable<UserResponse>;
 
@@ -100,6 +110,11 @@ export interface UsersServiceController {
     metadata?: Metadata,
   ): Promise<UserResponse> | Observable<UserResponse> | UserResponse;
 
+  find(
+    request: FindUsersRequest,
+    metadata?: Metadata,
+  ): Observable<UserResponse>;
+
   delete(
     request: DeleteUserRequest,
     metadata?: Metadata,
@@ -122,6 +137,7 @@ export function UsersServiceControllerMethods() {
       'create',
       'update',
       'findById',
+      'find',
       'delete',
       'destroy',
       'login',
