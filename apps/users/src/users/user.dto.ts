@@ -1,14 +1,27 @@
-import { IsMobilePhone, IsMongoId, IsOptional } from 'class-validator';
+// local
+import { IsAboutMe, IsPassword, IsUsername } from './is-validator';
+import { Id } from './types/id';
+
+// libs
 import {
   CreateUserRequest,
   DeleteUserRequest,
   DestroyUserRequest,
   FindUserRequest,
+  FindUsersRequest,
   LoginUserRequest,
   UpdateUserRequest,
 } from '@iogru/protos/users.service.v1';
-import { IsAboutMe, IsPassword, IsUsername } from './is-validator';
-import { Id } from './types/id';
+
+// global
+import {
+  IsInt,
+  IsMobilePhone,
+  IsMongoId,
+  IsOptional,
+  Max,
+  Min,
+} from 'class-validator';
 
 /**
  * @property {@link IsUsername username}
@@ -70,6 +83,17 @@ export class DestroyUserDto implements DestroyUserRequest {
 export class FindUserDto implements FindUserRequest {
   @IsMongoId()
   id: Id;
+}
+
+export class FindUsersDto implements FindUsersRequest {
+  @IsInt()
+  @Min(1)
+  @Max(25)
+  limit: number;
+
+  @IsOptional()
+  @IsMongoId()
+  bookmark?: string;
 }
 
 /**

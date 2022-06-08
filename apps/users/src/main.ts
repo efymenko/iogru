@@ -1,9 +1,14 @@
-import { LoggerService } from '@iogru/logger';
+// local
+import { AppModule } from './app.module';
+import { Env } from './app.env-validator';
+
+// libs
 import { createGrpcOptions } from '@iogru/protos';
+import { LoggerService } from '@iogru/logger';
+
+// global
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
-import { Env } from './app.env-validator';
-import { AppModule } from './app.module';
 
 const up = async () => {
   const app = await NestFactory.create(AppModule, { bufferLogs: true });

@@ -1,17 +1,23 @@
-import { LoggerService } from '@iogru/logger';
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { BcryptService } from 'libs/bcrypt/src';
+// local
+import { Id } from './types/id';
+import { CreateUserDto, LoginUserDto } from './user.dto';
+import { User, UserDocument, UserLean } from './user.schema';
+
+// libs
 import {
   AlreadyExistsRpcException,
   InternalRpcException,
   NotFoundRpcException,
   UnauthenticatedRpcException,
-} from 'libs/protos/src/grpc-errors';
+} from '@iogru/protos';
+import { BcryptService } from '@iogru/bcrypt';
+import { LoggerService } from '@iogru/logger';
+
+// global
 import { FilterQuery, Model, QueryOptions, UpdateQuery } from 'mongoose';
-import { Id } from './types/id';
-import { CreateUserDto, LoginUserDto } from './user.dto';
-import { User, UserDocument, UserLean } from './user.schema';
+import { Observable } from 'rxjs';
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class UsersService {
@@ -144,6 +150,33 @@ export class UsersService {
     const user: UserLean = doc.toObject({ getters: true });
 
     return user;
+  }
+
+  find(limit: number, bookmark?: string) {
+    const filter: FilterQuery<UserDocument> = {
+      ...(bookmark && { _id: { $lt: bookmark } }),
+    };
+
+    return new Observable<UserLean>(sub => {
+      const query = this.model.find(filter).limit(limit);
+
+      const cursor = query.cursor();
+
+      cursor.on('data', function (doc) {
+        const user = doc.toObject({ getters: true });
+        console.log(user);
+        sub.next(user);
+      });
+
+      cursor.on('end', function () {
+        sub.complete();
+      });
+
+      cursor.on('error', function (err) {
+        this.logger.error(err.message);
+        sub.error(err);
+      });
+    });
   }
 
   async login(dto: LoginUserDto) {

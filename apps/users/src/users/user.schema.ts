@@ -1,14 +1,16 @@
+// libs
+import { DateProp } from '@iogru/common';
+
+// global
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { DateProp } from '@iogru/common';
-import { UserResponse } from '@iogru/protos/users.service.v1';
 
 export type UserDocument = User & Document;
 
 export type UserLean = User & { id: string };
 
 @Schema({ timestamps: true })
-export class User implements Omit<UserResponse, 'id'> {
+export class User {
   @Prop({ unique: true })
   username: string;
 
@@ -25,10 +27,10 @@ export class User implements Omit<UserResponse, 'id'> {
   isDeleted: boolean;
 
   @DateProp()
-  createdAt: number;
+  createdAt: string;
 
   @DateProp()
-  updatedAt: number;
+  updatedAt: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
