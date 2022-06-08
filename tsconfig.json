@@ -22,7 +22,8 @@
       "@iogru/logger": ["libs/logger/src"],
       "@iogru/protos": ["libs/protos/src"],
       "@iogru/protos/*": ["libs/protos/src/interfaces/*"],
-      "@iogru/bcrypt": ["libs/bcrypt/src"]
+      "@iogru/bcrypt": ["libs/bcrypt/src"],
+      "@iogru/health": ["libs/health/src"]
     }
   }
 }
