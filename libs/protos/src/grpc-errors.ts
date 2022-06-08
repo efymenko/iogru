@@ -1,26 +1,35 @@
 import { RpcException } from '@nestjs/microservices';
 import { GrpcStatusCodes } from './grpc-error-codes';
 
-export class InternalRpcException extends RpcException {
-  constructor() {
-    super({ message: '', code: GrpcStatusCodes.Internal });
+export class GrpcException extends RpcException {
+  constructor(
+    readonly message: string,
+    readonly code: typeof GrpcStatusCodes[keyof typeof GrpcStatusCodes],
+  ) {
+    super({ message, code });
   }
 }
 
-export class NotFoundRpcException extends RpcException {
+export class InternalRpcException extends GrpcException {
   constructor() {
-    super({ message: '', code: GrpcStatusCodes.NotFound });
+    super('', GrpcStatusCodes.Internal);
   }
 }
 
-export class UnauthenticatedRpcException extends RpcException {
+export class NotFoundRpcException extends GrpcException {
   constructor() {
-    super({ message: '', code: GrpcStatusCodes.Unauthenticated });
+    super('', GrpcStatusCodes.NotFound);
   }
 }
 
-export class AlreadyExistsRpcException extends RpcException {
+export class UnauthenticatedRpcException extends GrpcException {
   constructor() {
-    super({ message: '', code: GrpcStatusCodes.AlreadyExists });
+    super('', GrpcStatusCodes.Unauthenticated);
+  }
+}
+
+export class AlreadyExistsRpcException extends GrpcException {
+  constructor() {
+    super('', GrpcStatusCodes.AlreadyExists);
   }
 }
