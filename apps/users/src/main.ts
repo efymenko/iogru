@@ -18,10 +18,10 @@ const up = async () => {
 
   app.useLogger(logger);
 
-  const GRPC_PORT = config.get('GRPC_PORT', { infer: true });
+  const GRPC_URL = config.get('GRPC_URL', { infer: true });
   const HTTP_PORT = config.get('HTTP_PORT', { infer: true });
 
-  const options = createGrpcOptions({ name: 'UsersService', port: GRPC_PORT });
+  const options = createGrpcOptions({ name: 'UsersService', url: GRPC_URL });
 
   app.connectMicroservice(options);
 
@@ -30,7 +30,7 @@ const up = async () => {
   app.enableShutdownHooks();
 
   app.listen(HTTP_PORT, () =>
-    logger.info('Users Microservice launched.', { GRPC_PORT, HTTP_PORT }),
+    logger.info('Users Microservice launched.', { GRPC_URL, HTTP_PORT }),
   );
 };
 

@@ -3,8 +3,8 @@ import { IsPort, IsUrl, validateSync } from 'class-validator';
 import { plainToClass } from 'class-transformer';
 
 export class Env {
-  @IsPort()
-  GRPC_PORT: string;
+  @IsUrl({ require_protocol: false, require_tld: false })
+  GRPC_URL: string;
 
   @IsPort()
   HTTP_PORT: string;
