@@ -19,6 +19,10 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
+/**
+ * @public
+ * @class
+ */
 @Injectable()
 export class UsersService {
   constructor(
@@ -29,6 +33,14 @@ export class UsersService {
     logger.setMetadata({ class: UsersService.name });
   }
 
+  /**
+   * Creates a user with a hashed password.
+   *
+   * @throws {@link AlreadyExistsRpcException} In case
+   * of coalitions of unique fields.
+   *
+   * @throws {@link InternalRpcException}
+   */
   async create(dto: CreateUserDto) {
     const { username, password, ...payload } = dto;
 
@@ -62,6 +74,11 @@ export class UsersService {
     return user;
   }
 
+  /**
+   * @throws {@link InternalRpcException}
+   *
+   * @throws {@link NotFoundRpcException}
+   */
   async update(id: Id, toUpdate: Partial<User>) {
     const update: UpdateQuery<UserDocument> = { $set: { ...toUpdate } };
 
@@ -85,12 +102,26 @@ export class UsersService {
     return user;
   }
 
+  /**
+   * Marks the user as {@link User.isDeleted isDeleted}
+   *
+   * @throws {@link InternalRpcException}
+   *
+   * @throws {@link NotFoundRpcException}
+   */
   async delete(id: Id) {
     const toUpdate = { isDeleted: true };
 
     return this.update(id, toUpdate);
   }
 
+  /**
+   * Deletes the user's document from the database.
+   *
+   * @throws {@link InternalRpcException}
+   *
+   * @throws {@link NotFoundRpcException}
+   */
   async destroy(id: Id) {
     let doc;
 
@@ -112,6 +143,14 @@ export class UsersService {
     return user;
   }
 
+  /**
+   * Searches for a user by id, even among those marked
+   * {@link User.isDeleted isDeleted}.
+   *
+   * @throws {@link InternalRpcException}
+   *
+   * @throws {@link NotFoundRpcException}
+   */
   async findById(id: Id) {
     let doc;
 
@@ -131,6 +170,14 @@ export class UsersService {
     return user;
   }
 
+  /**
+   * Searches for a user by username, even among those marked
+   * {@link User.isDeleted isDeleted}.
+   *
+   * @throws {@link InternalRpcException}
+   *
+   * @throws {@link NotFoundRpcException}
+   */
   async findByUsername(username: string) {
     const filter: FilterQuery<UserDocument> = { username };
 
@@ -152,6 +199,10 @@ export class UsersService {
     return user;
   }
 
+  /**
+   *
+   * @throws {@link InternalRpcException}
+   */
   find(limit: number, bookmark?: string) {
     const filter: FilterQuery<UserDocument> = {
       ...(bookmark && { _id: { $lt: bookmark } }),
@@ -174,11 +225,16 @@ export class UsersService {
 
       cursor.on('error', function (err) {
         this.logger.error(err.message);
-        sub.error(err);
+        sub.error(new InternalRpcException());
       });
     });
   }
 
+  /**
+   * @throws {@link UnauthenticatedRpcException}
+   *
+   * @see {@link UsersService.findByUsername findByUsername}
+   */
   async login(dto: LoginUserDto) {
     const { username, password } = dto;
 
