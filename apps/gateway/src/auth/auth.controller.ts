@@ -1,5 +1,5 @@
 // local
-import { UsersService } from '../users/users.service';
+import { UsersService } from '../users/users-service.token';
 import { AuthService } from './auth.service';
 
 //libs

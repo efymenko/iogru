@@ -1,6 +1,6 @@
 // local
 import { Auth } from '../auth/auth.guard';
-import { UsersService } from './users.service';
+import { UsersService } from './users-service.token';
 
 // libs
 import { RpcExceptionFilter, Id } from '@iogru/common';
