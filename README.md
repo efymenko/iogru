@@ -2,6 +2,7 @@
 
 - [Running](#running)
 - [API](#api)
+- [TODO](#todo)
 - [Contacts](#contacts)
 
 ## Running
@@ -30,6 +31,12 @@ $ docker-compose -f ./composers/presentation.docker-compose.yaml up
 - 🙇‍♂️ _GET_ \:id
 - 😧 _GET_ \:id/delete
 - 👻 _DELETE_ \:id
+
+## TODO
+
+- [ ] - Attribute-Based Access Control. ([CASL](https://casl.js.org/v5/en/))
+- [ ] - Tests. ([Jest](https://jestjs.io/)/[Chai](https://www.chaijs.com/)/[Supertest](https://github.com/visionmedia/supertest))
+- [ ] - Web-client. ([Next](https://nextjs.org/)/[React](https://reactjs.org/)/[Redux Toolkit](https://redux-toolkit.js.org/))
 
 ## Contacts
 
