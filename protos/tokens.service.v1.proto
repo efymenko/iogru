@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package iogru;
+
+service TokensService {
+  rpc Resolve (ResolveTokensRequest) returns (ResolveTokensResponse);
+  rpc Issue (IssueRefreshTokenRequest) returns (IssueRefreshTokenResponse);
+  rpc Revoke (RevokeTokenRequest) returns (RevokeTokenRespone);
+}
+
+message ResolveTokensRequest {
+  optional string accessToken = 1;
+  optional string refreshToken = 2;
+  Footprint footprint = 3;
+}
+
+message IssueRefreshTokenRequest {
+  UserPayload toSign = 1;
+  Footprint footprint = 2;
+}
+
+message IssueRefreshTokenResponse {
+  string accessToken = 1;
+  string refreshToken = 2;
+}
+
+message ResolveTokensResponse {
+  string accessToken = 1;
+  optional string refreshToken = 2;
+  UserPayload payload = 3;
+}
+
+message RevokeTokenRespone {
+  UserPayload payload = 1;
+}
+
+message RevokeTokenRequest {
+  string refreshToken = 1;
+  string tokenId = 2;
+  Footprint footprint = 3;
+}
+
+message Footprint {
+  string userAgent = 1;
+  string ipv4 = 2;
+}
+
+message UserPayload {
+  string userId = 1;
+}
