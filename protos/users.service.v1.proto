@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package app.users;
+package iogru;
 
 message UserResponse {
   string id = 1;

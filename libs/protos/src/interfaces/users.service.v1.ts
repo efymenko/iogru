@@ -5,7 +5,7 @@ import * as _m0 from 'protobufjs/minimal';
 import { Observable } from 'rxjs';
 import { Metadata } from '@grpc/grpc-js';
 
-export const protobufPackage = 'app.users';
+export const protobufPackage = 'iogru';
 
 export interface UserResponse {
   id: string;
@@ -55,7 +55,7 @@ export interface LoginUserRequest {
   password: string;
 }
 
-export const APP_USERS_PACKAGE_NAME = 'app.users';
+export const IOGRU_PACKAGE_NAME = 'iogru';
 
 export interface UsersServiceClient {
   create(
