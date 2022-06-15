@@ -30,14 +30,16 @@ export const createWinstonLogger = (domain: string): LoggerOptions => {
     transports.push(transport);
   }
 
+  const exceptions = new trans.File({ filename: `${domain}.exception.log` });
+
   const options: LoggerOptions = {
     levels: LogLevels,
     level: 'trace',
     format: format.combine(format.timestamp(), format.json()),
     defaultMeta: { service: domain },
-    exceptionHandlers: [
-      new trans.File({ filename: `${domain}.exception.log` }),
-    ],
+    exceptionHandlers: [exceptions],
+    rejectionHandlers: [exceptions],
+
     transports,
   };
 
