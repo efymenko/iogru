@@ -11,7 +11,7 @@ import {
 } from './user.dto';
 
 // libs
-import { RpcValidationPipe } from '@iogru/common';
+import { GrpcValidationPipe } from '@iogru/common';
 import {
   UsersServiceController,
   USERS_SERVICE_NAME,
@@ -21,7 +21,7 @@ import {
 import { GrpcMethod, GrpcService } from '@nestjs/microservices';
 import { UsePipes } from '@nestjs/common';
 
-@UsePipes(RpcValidationPipe)
+@UsePipes(GrpcValidationPipe)
 @GrpcService()
 export class UsersController implements UsersServiceController {
   constructor(private readonly service: UsersService) {}
