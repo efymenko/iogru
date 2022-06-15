@@ -65,6 +65,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/health/tsconfig.lib.json"
       }
+    },
+    "tokens": {
+      "type": "application",
+      "root": "apps/tokens",
+      "entryFile": "main",
+      "sourceRoot": "apps/tokens/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/tokens/tsconfig.app.json"
+      }
     }
   },
   "compilerOptions": {
